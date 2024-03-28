@@ -15,6 +15,16 @@ export default function Header() {
     });
   }, []);
 
+  function logout() {
+    fetch("http://localhost:4000/logout", {
+      credentials: "include",
+      method: "POST",
+    });
+    setUserInfo(null);
+  }
+
+  const username = userInfo?.username;
+
   return (
     <header>
       <Link to="/" className="logo">
