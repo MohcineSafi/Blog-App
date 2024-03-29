@@ -1,10 +1,10 @@
 const express = require("express");
 const cors = require("cors");
-const app = express();
+const mongoose = require("mongoose");
 const User = require("./models/User");
 const Post = require("./models/Post");
 const bcrypt = require("bcryptjs");
-const mongoose = require("mongoose");
+const app = express();
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const multer = require("multer");
@@ -19,8 +19,9 @@ app.use(express.json());
 app.use(cookieParser());
 app.use("/uploads", express.static(__dirname + "/uploads"));
 
-mongoose.connect;
-"mongodb+srv://mohcinsafi2002:qtHD6BhRc6jjb3nW@cluster0.pmf8eft.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"();
+mongoose.connect(
+  "mongodb+srv://mohcinsafi2002:qtHD6BhRc6jjb3nW@cluster0.pmf8eft.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+);
 
 app.post("/register", async (req, res) => {
   const { username, password } = req.body;
@@ -133,4 +134,4 @@ app.get("/post/:id", async (req, res) => {
   res.json(postDoc);
 });
 
-app.listen(4000);
+app.listen(4001);
