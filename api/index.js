@@ -17,6 +17,7 @@ const secret = "asdfe45we45w345wegw345werjktjwertkj";
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(express.json());
 app.use(cookieParser());
+app.use("/uploads", express.static(__dirname + "/uploads"));
 
 mongoose.connect;
 "mongodb+srv://mohcinsafi2002:qtHD6BhRc6jjb3nW@cluster0.pmf8eft.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"();
@@ -85,6 +86,15 @@ app.post("/post", uploadMiddleware.single("file"), async (req, res) => {
     });
     res.json(postDoc);
   });
+});
+
+app.get("/post", async (req, res) => {
+  res.json(
+    await Post.find()
+      .populate("author", ["username"])
+      .sort({ createdAt: -1 })
+      .limit(20)
+  );
 });
 
 app.listen(4000);
