@@ -1,24 +1,23 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import { Link } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import { UserContext } from "./UserContext";
+import {Link} from "react-router-dom";
+import {useContext, useEffect, useState} from "react";
+import {UserContext} from "./UserContext";
 
 export default function Header() {
-  const { setUserInfo, userInfo } = useContext(UserContext);
+  const {setUserInfo,userInfo} = useContext(UserContext);
   useEffect(() => {
-    fetch("http://localhost:4000/profile", {
-      credentials: "include",
-    }).then((response) => {
-      response.json().then((userInfo) => {
+    fetch('http://localhost:4000/profile', {
+      credentials: 'include',
+    }).then(response => {
+      response.json().then(userInfo => {
         setUserInfo(userInfo);
       });
     });
   }, []);
 
   function logout() {
-    fetch("http://localhost:4000/logout", {
-      credentials: "include",
-      method: "POST",
+    fetch('http://localhost:4000/logout', {
+      credentials: 'include',
+      method: 'POST',
     });
     setUserInfo(null);
   }
@@ -27,9 +26,7 @@ export default function Header() {
 
   return (
     <header>
-      <Link to="/" className="logo">
-        MyBlog
-      </Link>
+      <Link to="/" className="logo">MyBlog</Link>
       <nav>
         {username && (
           <>
